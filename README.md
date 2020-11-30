@@ -1,5 +1,5 @@
 # mbrow.sh
-Minimal browser written in bash
+Minimal browser written in pure bash
 
 ## Usage
 ```
