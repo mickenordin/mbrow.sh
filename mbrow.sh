@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-url=$(echo ${1} | sed -e s'/^http:/https:/' -e'/^http/! s_\(.*\)_https://\1_') # https everywhere plugin
+if [[ -z ${1} ]]; then
+	echo "Please input url: "
+	read newurl
+else
+	newurl=${1}
+fi
+url=$(echo ${newurl} | sed -e 's/^http:/https:/' -e 's/^mbrows:/https:/' | sed '/^http/! s_\(.*\)_https://\1_' ) # https everywhere plugin
 htmlfile="$(mktemp -u)" #Save the file here
 wget -q "${url}" -O "${htmlfile}"  # Get the file
 function print_img {
@@ -20,9 +26,9 @@ function display_text {
         else
             echo "${line}" | egrep -q '\]\(/.*\)'
             if [[ "${?}" == "0" ]]; then
-                echo "${line}" | sed 's_\](/_]('${url}'/_'
+                echo "${line}"  | sed 's_\](/_]('${url}'/_' | sed -e 's_https://_mbrows://_' -e 's_http://_mbrows://_'
             else
-                echo "${line}"
+                echo "${line}" | sed -e 's_https://_mbrows://_' -e 's_http://_mbrows://_'
             fi
         fi
     done

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=mbrow.sh
+Comment=Browse the World Wide Web
+GenericName=Web Browser
+X-GNOME-FullName=Minimal Browser in Bash
+Exec=/usr/local/bin/mbrow %u;$SHELL
+Terminal=true
+X-MultipleArgs=false
+Type=Application
+Icon=firefox-esr
+Categories=Network;WebBrowser;
+MimeType=x-scheme-handler/mbrows;
+StartupNotify=true
