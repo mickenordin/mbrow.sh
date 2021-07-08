@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-if [[ -z ${TMUX} ]]; then
-	tmux -f "/usr/local/etc/mbrow-tmux.conf" new-session -A -s mbrowsession \; new-window /usr/local/bin/mbrow.sh "$@" 
-else
-	tmux new-window bash -c "/usr/local/bin/mbrow.sh" 
-fi
